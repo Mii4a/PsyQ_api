@@ -25,11 +25,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 # newly added gems
 gem 'carrierwave', '1.2.2'
-gem 'kaminari'
-gem 'mini_magick', '4.7.0'
 gem 'rack-cors'
-gem 'slim'
-gem 'slim-rails'
 gem 'sprockets', '~> 3.7.2'
 gem 'uglifier',     '3.2.0'
 
@@ -58,16 +54,6 @@ group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
-end
-
-group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
-  gem 'rspec-rails', '~> 4.0.0.beta'
-  gem 'selenium-webdriver'
-  # Easy installation and use of web drivers to run system tests with browsers
-  gem 'factory_bot_rails', '5.0.2'
-  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
