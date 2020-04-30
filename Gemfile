@@ -26,6 +26,8 @@ gem 'bcrypt', '~> 3.1.7'
 # newly added gems
 gem 'carrierwave', '1.2.2'
 gem 'dotenv-rails'
+gem 'foreman'
+gem 'jwt_sessions'
 gem 'rack-cors'
 gem 'sprockets', '~> 3.7.2'
 gem 'uglifier',     '3.2.0'
@@ -44,6 +46,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'activeadmin'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'rspec'
   gem 'sqlite3', '~> 1.4'
 end
 

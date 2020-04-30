@@ -2,6 +2,8 @@
 
 class ApplicationController < ActionController::API
   include ActionController::HttpAuthentication::Token::ControllerMethods
+  include JWTSessions::RailsAuthorization
+  rescue_from JWTSessions::Errors::Unauthorized, with: :not_authorized
   before_action :authenticate
 
   private
@@ -20,5 +22,13 @@ class ApplicationController < ActionController::API
     # render_errors(:unauthorized, ['invalid token'])
     obj = { message: 'token invalid' }
     render json: obj, status: :unauthorized
+  end
+
+  def current_user
+    @current_user ||= User.find(payload['user_id'])
+  end
+
+  def not_authorized
+    render json: { error: 'Not authorized ' }, status: :unauthorized
   end
 end

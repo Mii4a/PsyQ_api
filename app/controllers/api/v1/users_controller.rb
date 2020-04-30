@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::UsersController < ApplicationController
+  protect_for_forgery expect: [:create]
   before_action :set_user, only: %i[show update destroy]
 
   # GET /users
@@ -20,9 +21,19 @@ class Api::V1::UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      render :show, status: :created, location: @user
+
+      payload = { user_id: @users.id }
+      session = JWTSessions::Session.new(payload: payload,
+                                         refresh_by_access_allowed: true)
+      token = session.logins
+      response.set_cookie(JWTSessions.access_cookie,
+                          value: token[:access],
+                          httponly: true,
+                          secure: Rails.env.production?)
+      render json: { csrf: tokens[:csrf] }
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: { error: user.error.full_messages.join(' ') },
+             status: :unprocessable_entity
     end
   end
 
