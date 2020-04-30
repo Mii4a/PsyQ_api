@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Api::V1::UsersController < ApplicationController
-  protect_for_forgery expect: [:create]
   before_action :set_user, only: %i[show update destroy]
 
   # GET /users
