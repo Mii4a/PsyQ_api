@@ -16,3 +16,8 @@
     password_confirmation: 'password'
   )
 end
+
+Workbook.create!(
+  subject_name: 'test workbook',
+  subject_explanation: 'this is test workbook'
+)

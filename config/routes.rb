@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :workbooks
   namespace :api, { format: 'json' } do
     namespace :v1 do
       resources :users
+      resources :workbooks
       post 'signin', controller: :sessions, action: :create
       delete 'signin', controller: :sessions, action: :destroy
       post 'refresh', controller: :refresh, action: :create

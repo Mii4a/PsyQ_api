@@ -3,26 +3,26 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:alice) { create(:alice) }
+  let(:user) { create(:user) }
 
   context 'when #name is blank' do
     it 'is invalid' do
-      alice.name = '   '
-      expect(alice).to be_invalid
+      user.name = '   '
+      expect(user).to be_invalid
     end
   end
 
   context 'when #email is blank' do
     it 'is invalid' do
-      alice.email = '   '
-      expect(alice).to be_invalid
+      user.email = '   '
+      expect(user).to be_invalid
     end
   end
 
   context 'when #password is blank' do
     it 'is invalid' do
-      alice.password = '   '
-      expect(alice).to be_invalid
+      user.password = '   '
+      expect(user).to be_invalid
     end
   end
 end
