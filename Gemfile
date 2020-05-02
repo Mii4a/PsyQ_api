@@ -29,6 +29,7 @@ gem 'dotenv-rails'
 gem 'foreman'
 gem 'jwt_sessions'
 gem 'rack-cors'
+gem 'redis'
 gem 'sprockets', '~> 3.7.2'
 gem 'uglifier',     '3.2.0'
 
