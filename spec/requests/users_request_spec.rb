@@ -12,4 +12,8 @@ RSpec.describe 'Users', type: :request do
       expect(response).to have_http_status(401)
     end
   end
+
+  describe "POST /api/v1/users" do
+    
+  end
 end

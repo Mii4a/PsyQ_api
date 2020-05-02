@@ -8,6 +8,14 @@ class ApplicationController < ActionController::API
 
   private
 
+  def current_user
+    @current_user ||= User.find(payload[:user_id])
+  end
+
+  def current_user?(_user)
+    _user = current_user
+  end
+
   def authenticate
     authenticate_token || render_unauthorized
   end
@@ -22,10 +30,6 @@ class ApplicationController < ActionController::API
     # render_errors(:unauthorized, ['invalid token'])
     obj = { message: 'token invalid' }
     render json: obj, status: :unauthorized
-  end
-
-  def current_user
-    @current_user ||= User.find(payload['user_id'])
   end
 
   def not_authorized

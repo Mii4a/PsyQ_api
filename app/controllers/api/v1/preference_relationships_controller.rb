@@ -1,16 +1,5 @@
-class PreferenceRelationshipsController < ApplicationController
-  before_action :set_preference_relationship, only: [:show, :update, :destroy]
-
-  # GET /preference_relationships
-  # GET /preference_relationships.json
-  def index
-    @preference_relationships = PreferenceRelationship.all
-  end
-
-  # GET /preference_relationships/1
-  # GET /preference_relationships/1.json
-  def show
-  end
+class Api::V1::PreferenceRelationshipsController < ApplicationController
+  before_action :set_preference_relationship, only: [:destroy]
 
   # POST /preference_relationships
   # POST /preference_relationships.json
@@ -18,17 +7,7 @@ class PreferenceRelationshipsController < ApplicationController
     @preference_relationship = PreferenceRelationship.new(preference_relationship_params)
 
     if @preference_relationship.save
-      render :show, status: :created, location: @preference_relationship
-    else
-      render json: @preference_relationship.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /preference_relationships/1
-  # PATCH/PUT /preference_relationships/1.json
-  def update
-    if @preference_relationship.update(preference_relationship_params)
-      render :show, status: :ok, location: @preference_relationship
+      render status: :created, location: @preference_relationship
     else
       render json: @preference_relationship.errors, status: :unprocessable_entity
     end
