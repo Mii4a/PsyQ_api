@@ -1,15 +1,20 @@
+# frozen_string_literal: true
+
 class Api::V1::WorkbooksController < ApplicationController
-  before_action :set_workbook, only: [:show, :update, :destroy]
+  before_action :set_workbook, only: %i[show update destroy]
 
   # GET /workbooks
   # GET /workbooks.json
   def index
     @workbooks = Workbook.all
+    render json: @workbooks
   end
 
   # GET /workbooks/1
   # GET /workbooks/1.json
   def show
+    @workbook = Workbook.find(params[:id])
+    render json: @workbook
   end
 
   # POST /workbooks
@@ -41,13 +46,14 @@ class Api::V1::WorkbooksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_workbook
-      @workbook = Workbook.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def workbook_params
-      params.require(:workbook).permit(:subject_name, :subject_explanation)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_workbook
+    @workbook = Workbook.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def workbook_params
+    params.require(:workbook).permit(:subject_name, :subject_explanation)
+  end
 end
