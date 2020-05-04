@@ -23,7 +23,7 @@ class Api::V1::WorkbooksController < ApplicationController
     @workbook = Workbook.new(workbook_params)
 
     if @workbook.save
-      render :show, status: :created, location: @workbook
+      render json: @workbook, status: :created
     else
       render json: @workbook.errors, status: :unprocessable_entity
     end

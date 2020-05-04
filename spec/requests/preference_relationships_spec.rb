@@ -44,15 +44,17 @@ RSpec.describe '/preference_relationships', type: :request do
     context 'with valid parameters' do
       it 'creates a new PreferenceRelationship' do
         expect do
-          post api_v1_preference_relationships_url,
+          post api_v1_preference_relationships_path,
                params: valid_attributes,
                headers: headers_authorization
         end.to change(PreferenceRelationship, :count).by(1)
       end
 
       it 'renders a JSON response with the new preference_relationship' do
-        post api_v1_preference_relationships_url,
-             params: valid_attributes, headers: headers_authorization, as: :json
+        post api_v1_preference_relationships_path,
+             params: valid_attributes,
+             headers: headers_authorization,
+             as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including('application/json'))
       end
@@ -61,13 +63,15 @@ RSpec.describe '/preference_relationships', type: :request do
     context 'with invalid parameters' do
       it 'does not create a new PreferenceRelationship' do
         expect do
-          post api_v1_preference_relationships_url,
-               params: invalid_attributes, headers: headers_authorization, as: :json
+          post api_v1_preference_relationships_path,
+               params: invalid_attributes,
+               headers: headers_authorization,
+               as: :json
         end.to change(PreferenceRelationship, :count).by(0)
       end
 
       it 'renders a JSON response with errors for the new preference_relationship' do
-        post api_v1_preference_relationships_url,
+        post api_v1_preference_relationships_path,
              params: invalid_attributes,
              headers: headers_authorization,
              as: :json
@@ -78,7 +82,7 @@ RSpec.describe '/preference_relationships', type: :request do
 
     context 'without authorizattion in headers' do
       it 'return the response to have status code :unauthorized' do
-        post api_v1_preference_relationships_url,
+        post api_v1_preference_relationships_path,
              params: valid_attributes,
              as: :json
         expect(response).to have_http_status(:unauthorized)
@@ -93,13 +97,10 @@ RSpec.describe '/preference_relationships', type: :request do
         workbook_id: workbook.id
       )
       expect do
-        delete api_v1_preference_relationship_url(preference_relationship),
+        delete api_v1_preference_relationship_path(preference_relationship),
                headers: headers_authorization,
                as: :json
       end.to change(PreferenceRelationship, :count).by(-1)
-    end
-
-    context 'without authorization in headers' do
     end
   end
 end

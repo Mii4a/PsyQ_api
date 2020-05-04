@@ -9,7 +9,7 @@ RSpec.describe 'Users', type: :request do
 
   describe 'GET /api/v1/users' do
     it 'User一覧を取得する' do
-      get '/api/v1/users', headers: valid_headers
+      get api_v1_users_path, headers: valid_headers
       expect(response).to have_http_status(200)
     end
   end
