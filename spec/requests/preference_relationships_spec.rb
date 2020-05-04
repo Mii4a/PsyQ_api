@@ -102,5 +102,18 @@ RSpec.describe '/preference_relationships', type: :request do
                as: :json
       end.to change(PreferenceRelationship, :count).by(-1)
     end
+
+    context 'without authorization' do
+      it 'destroys the requested workbook' do
+        preference_relationship = PreferenceRelationship.create!(
+          user_id: user.id,
+          workbook_id: workbook.id
+        )
+        expect do
+          delete api_v1_preference_relationship_path(preference_relationship),
+                 as: :json
+        end.to change(PreferenceRelationship, :count).by(0)
+      end
+    end
   end
 end

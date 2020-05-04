@@ -43,6 +43,7 @@ class Api::V1::WorkbooksController < ApplicationController
   # DELETE /workbooks/1.json
   def destroy
     @workbook.destroy
+    head :no_content
   end
 
   private

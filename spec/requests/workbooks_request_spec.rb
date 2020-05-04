@@ -107,5 +107,18 @@ RSpec.describe 'Workbooks', type: :request do
         end.to change(Workbook, :count).by(-1)
       end
     end
+
+    context 'without authorization' do
+      it 'destroys the requested workbook' do
+        workbook = Workbook.create!(
+          subject_name: 'test name',
+          subject_explanation: 'test explanation'
+        )
+        expect do
+          delete api_v1_workbook_path(workbook),
+                 as: :json
+        end.to change(Workbook, :count).by(0)
+      end
+    end
   end
 end
