@@ -33,7 +33,7 @@ class Api::V1::WorkbooksController < ApplicationController
   # PATCH/PUT /workbooks/1.json
   def update
     if @workbook.update(workbook_params)
-      render :show, status: :ok, location: @workbook
+      render @workbook, status: :ok
     else
       render json: @workbook.errors, status: :unprocessable_entity
     end
