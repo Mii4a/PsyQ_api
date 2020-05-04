@@ -10,17 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_02_013533) do
-
-  create_table "favorite_workbooks", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "workbook_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id", "workbook_id"], name: "index_favorite_workbooks_on_user_id_and_workbook_id", unique: true
-    t.index ["user_id"], name: "index_favorite_workbooks_on_user_id"
-    t.index ["workbook_id"], name: "index_favorite_workbooks_on_workbook_id"
-  end
+ActiveRecord::Schema.define(version: 2020_05_03_142601) do
 
   create_table "preference_relationships", force: :cascade do |t|
     t.integer "user_id"
@@ -30,6 +20,14 @@ ActiveRecord::Schema.define(version: 2020_05_02_013533) do
     t.index ["user_id", "workbook_id"], name: "index_preference_relationships_on_user_id_and_workbook_id", unique: true
     t.index ["user_id"], name: "index_preference_relationships_on_user_id"
     t.index ["workbook_id"], name: "index_preference_relationships_on_workbook_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.text "explanation"
+    t.integer "workbook_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["workbook_id"], name: "index_questions_on_workbook_id"
   end
 
   create_table "users", force: :cascade do |t|

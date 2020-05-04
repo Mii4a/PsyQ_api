@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
-  factory :preference_relationship do
-    user_id { 1 }
-    workbook_id { 1 }
+  factory :preference_relationship, class: PreferenceRelationship do
+    association :user, factory: :user
+    association :workbook, factory: :workbook
   end
 end

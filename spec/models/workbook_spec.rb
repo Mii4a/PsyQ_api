@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Workbook, type: :model do
-  let(:workbook){ create(:psychology) }
+  let(:workbook) { create(:workbook) }
 
   context 'when #subject_name is blank' do
     it 'is invalid' do

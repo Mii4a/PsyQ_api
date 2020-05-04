@@ -19,35 +19,40 @@ RSpec.describe '/preference_relationships', type: :request do
   # PreferenceRelationship. As you add validations to PreferenceRelationship, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    { preference_relationship: { user_id: user.id, workbook_id: workbook.id } }
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    { preference_relationship: { user_id: nil, workbook_id: nil } }
   end
 
   # This should return the minimal set of values that should be in the headers
   # in order to pass any filters (e.g. authentication) defined in
   # PreferenceRelationshipsController, or in your router and rack
   # middleware. Be sure to keep this updated too.
-  let(:valid_headers) do
-    { 'Authorization': ENV['API_TOKEN'] }
+  let(:headers_authorization) do
+    { 'Authorization': 'Token ' + ENV.fetch('API_TOKEN') }
   end
+
+  # Test User
+  let(:user) { create(:user) }
+
+  # Test Workbook
+  let(:workbook) { create(:workbook) }
 
   describe 'POST /create' do
     context 'with valid parameters' do
-      let(:user) { create(:user) }
-      let(:workbook) { create(:workbook) }
       it 'creates a new PreferenceRelationship' do
         expect do
-          post '/api/v1/preference_relationships',
-               params: { preference_relationship: { user_id: user, workbook_id: workbook } }
+          post api_v1_preference_relationships_url,
+               params: valid_attributes,
+               headers: headers_authorization
         end.to change(PreferenceRelationship, :count).by(1)
       end
 
       it 'renders a JSON response with the new preference_relationship' do
-        post preference_relationships_url,
-             params: { preference_relationship: valid_attributes }, headers: valid_headers, as: :json
+        post api_v1_preference_relationships_url,
+             params: valid_attributes, headers: headers_authorization, as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including('application/json'))
       end
@@ -56,26 +61,45 @@ RSpec.describe '/preference_relationships', type: :request do
     context 'with invalid parameters' do
       it 'does not create a new PreferenceRelationship' do
         expect do
-          post preference_relationships_url,
-               params: { preference_relationship: invalid_attributes }, as: :json
+          post api_v1_preference_relationships_url,
+               params: invalid_attributes, headers: headers_authorization, as: :json
         end.to change(PreferenceRelationship, :count).by(0)
       end
 
       it 'renders a JSON response with errors for the new preference_relationship' do
-        post preference_relationships_url,
-             params: { preference_relationship: invalid_attributes }, headers: valid_headers, as: :json
+        post api_v1_preference_relationships_url,
+             params: invalid_attributes,
+             headers: headers_authorization,
+             as: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to eq('application/json')
+        expect(response.content_type).to eq('application/json; charset=utf-8')
+      end
+    end
+
+    context 'without authorizattion in headers' do
+      it 'return the response to have status code :unauthorized' do
+        post api_v1_preference_relationships_url,
+             params: valid_attributes,
+             as: :json
+        expect(response).to have_http_status(:unauthorized)
       end
     end
   end
 
   describe 'DELETE /destroy' do
     it 'destroys the requested preference_relationship' do
-      preference_relationship = PreferenceRelationship.create! valid_attributes
+      preference_relationship = PreferenceRelationship.create!(
+        user_id: user.id,
+        workbook_id: workbook.id
+      )
       expect do
-        delete preference_relationship_url(preference_relationship), headers: valid_headers, as: :json
+        delete api_v1_preference_relationship_url(preference_relationship),
+               headers: headers_authorization,
+               as: :json
       end.to change(PreferenceRelationship, :count).by(-1)
+    end
+
+    context 'without authorization in headers' do
     end
   end
 end

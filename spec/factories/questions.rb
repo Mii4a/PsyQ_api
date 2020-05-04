@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :question do
-    question_explanation { "MyText" }
-    workbook_id { "" }
+    explanation { 'MyText' }
+    association :workbook
   end
 end
