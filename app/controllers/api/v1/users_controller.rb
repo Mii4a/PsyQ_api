@@ -32,7 +32,7 @@ class Api::V1::UsersController < ApplicationController
                           secure: Rails.env.production?)
       render json: { csrf: tokens[:csrf] }, status: :created
     else
-      render json: { error: @user.error.full_messages.join(' ') },
+      render json: { error: @user.errors.full_messages.join(' ') },
              status: :unprocessable_entity
     end
   end

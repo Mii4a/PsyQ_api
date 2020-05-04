@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class Api::V1::QuestionController < ApplicationController
-  before_action :set_question
+class Api::V1::QuestionsController < ApplicationController
+  before_action :set_question, only: %i[show update destroy]
 
   def index
     @questions = Question.all
@@ -18,7 +18,7 @@ class Api::V1::QuestionController < ApplicationController
     if @question.save
       render json: @question, status: :created
     else
-      render json: @question.error, status: :unprocessable_entity
+      render json: @question.errors, status: :unprocessable_entity
     end
   end
 
@@ -26,7 +26,7 @@ class Api::V1::QuestionController < ApplicationController
     if @question.update_attributes(question_params)
       render json: @question, status: :ok
     else
-      render json: @question.error, status: :unprocessable_entity
+      render json: @question.errors, status: :unprocessable_entity
     end
   end
 

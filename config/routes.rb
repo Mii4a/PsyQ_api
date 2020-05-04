@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :users
       resources :workbooks
       resources :preference_relationships, only: %i[create destroy show]
+      resources :questions
       post 'signin', controller: :sessions, action: :create
       delete 'signin', controller: :sessions, action: :destroy
       post 'refresh', controller: :refresh, action: :create
