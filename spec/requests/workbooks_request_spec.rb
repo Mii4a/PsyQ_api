@@ -119,6 +119,16 @@ RSpec.describe 'Workbooks', type: :request do
                  as: :json
         end.to change(Workbook, :count).by(0)
       end
+
+      it 'renders a JSON response to have http status :unauthorized' do
+        workbook = Workbook.create!(
+          subject_name: 'test name',
+          subject_explanation: 'test explanation'
+        )
+        delete api_v1_workbook_path(workbook),
+               as: :json
+        expect(response).to have_http_status(:unauthorized)
+      end
     end
   end
 end

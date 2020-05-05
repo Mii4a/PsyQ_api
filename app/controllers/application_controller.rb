@@ -12,10 +12,6 @@ class ApplicationController < ActionController::API
     @current_user ||= User.find(payload[:user_id])
   end
 
-  def current_user?(_user)
-    _user = current_user
-  end
-
   def authenticate
     authenticate_token || render_unauthorized
   end

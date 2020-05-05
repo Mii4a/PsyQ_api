@@ -16,7 +16,7 @@ class Api::V1::SessionsController < ApplicationController
                           secure: Rails.env.production?)
       render json: { csrf: token[:csrf] }
     else
-      not_authorized
+      not_found
     end
   end
 
@@ -28,7 +28,7 @@ class Api::V1::SessionsController < ApplicationController
 
   private
 
-  def not_fount
+  def not_found
     render json: { error: 'Cannot find email/password combination' },
            status: :not_found
   end
