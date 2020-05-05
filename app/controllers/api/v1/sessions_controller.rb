@@ -23,7 +23,7 @@ class Api::V1::SessionsController < ApplicationController
   def destroy
     session = JWTSessions::Session.new(payload: payload)
     session.flush_by_access_payload
-    render json: :ok
+    render json: :success
   end
 
   private
