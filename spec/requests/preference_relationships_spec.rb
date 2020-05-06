@@ -44,9 +44,16 @@ RSpec.describe '/preference_relationships', type: :request do
     context 'with valid parameters' do
       it 'creates a new PreferenceRelationship' do
         expect do
+          post '/api/v1/login', params: {
+            session: {
+              email: user.email,
+              password: user.password
+            }
+          }
           post api_v1_preference_relationships_path,
                params: valid_attributes,
-               headers: headers_authorization
+               headers: headers_authorization,
+               as: :json
         end.to change(PreferenceRelationship, :count).by(1)
       end
 

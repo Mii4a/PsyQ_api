@@ -61,6 +61,13 @@ class Api::V1::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def correct_user
+    unless @user == @current_user
+      msg = { message: 'Invalid operation' }
+      render json: msg, status: :forbidden
+    end
+  end
+
   # Only allow a list of trusted parameters through.
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)

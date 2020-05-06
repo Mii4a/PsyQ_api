@@ -11,8 +11,7 @@ class Api::V1::PreferenceRelationshipsController < ApplicationController
   # POST /preference_relationships
   # POST /preference_relationships.json
   def create
-    @preference_relationship = PreferenceRelationship.new(preference_relationship_params)
-
+    @preference_relationship = current_user.preferenceRelationship.new(preference_relationship_params)
     if @preference_relationship.save
       render json: @preference_relationship, status: :created
     else
