@@ -34,7 +34,6 @@ gem 'redis'
 
 
 # gem for image uploader
-gem 'aws-sdk'
 gem 'carrierwave', '1.2.2'
 gem 'carrierwave-base64'
 gem 'fog-aws'
