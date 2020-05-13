@@ -39,6 +39,7 @@ module PsyqApi
     end
     config.api_only = true
     config.middleware.use ActionDispatch::Flash
+    config.x.cors_allowed_origins = ENV.fetch('CORS_ALLOWED_ORIGINS', 'http://localhost:8080')
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 

@@ -23,13 +23,22 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-# newly added gems
-gem 'carrierwave', '1.2.2'
+# gem for environment variable
 gem 'dotenv-rails'
+
+# gem for JWT session
 gem 'foreman'
 gem 'jwt_sessions'
 gem 'rack-cors'
 gem 'redis'
+
+
+# gem for image uploader
+gem 'aws-sdk'
+gem 'carrierwave', '1.2.2'
+gem 'carrierwave-base64'
+gem 'fog-aws'
+
 gem 'sprockets', '~> 3.7.2'
 gem 'uglifier',     '3.2.0'
 
