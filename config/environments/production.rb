@@ -2,7 +2,6 @@
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.action_cable.allowed_request_origins = [ENV['CORS_ALLOWED_ORIGINS']]
   config.assets.initialize_on_precompile = false
 
   # Code is not reloaded between requests.
