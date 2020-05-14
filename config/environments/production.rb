@@ -2,7 +2,14 @@
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.action_cable.allowed_request_origins = [ENV['CORS_ALLOWED_ORIGINS']]
   config.assets.initialize_on_precompile = false
+
+  config.action_controller.perform_caching = true
+  config.cache_store = :redis_store, ENV['REDIS_CACHE_STORE']
+  config.public_file_server.headers = {
+    'Cache-Control' => "public, max-age=#{2.days.to_i}"
+  }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
