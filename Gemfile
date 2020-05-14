@@ -31,6 +31,7 @@ gem 'foreman'
 gem 'jwt_sessions'
 gem 'rack-cors'
 gem 'redis'
+gem 'redis-rails'
 
 
 # gem for image uploader
