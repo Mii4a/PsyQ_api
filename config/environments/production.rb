@@ -3,6 +3,10 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   config.assets.initialize_on_precompile = false
+  config.session_store :redis_stor, {
+    servers: ENV['REDIS_URL'],
+    expire_after: 2.days
+  }
 
   # Code is not reloaded between requests.
   config.cache_classes = true

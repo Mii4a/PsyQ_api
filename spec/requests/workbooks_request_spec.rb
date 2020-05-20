@@ -21,6 +21,8 @@ RSpec.describe 'Workbooks', type: :request do
     { 'Authorization': 'Token ' + ENV.fetch('API_TOKEN') }
   end
 
+  let(:admin_user){ create(:admin_user) }
+
   describe 'GET /index' do
     context 'with authorization' do
       it 'renders a JSON response with all preference relationships' do

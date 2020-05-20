@@ -6,6 +6,7 @@ class ApplicationController < ActionController::API
   rescue_from JWTSessions::Errors::Unauthorized, with: :not_authorized
   before_action :authenticate
 
+
   private
 
   def current_user

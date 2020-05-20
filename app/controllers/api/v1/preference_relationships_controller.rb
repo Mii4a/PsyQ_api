@@ -4,7 +4,7 @@ class Api::V1::PreferenceRelationshipsController < ApplicationController
   before_action :set_preference_relationship, only: [:destroy]
 
   def show
-    @preference_relationship = PreferenceRelationship.find(params[:id])
+    @preference_relationship = current_user.preference_relationships.find(params[:workbook_id])
     render json: @preference_relationship
   end
 
@@ -30,7 +30,7 @@ class Api::V1::PreferenceRelationshipsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_preference_relationship
-    @preference_relationship = PreferenceRelationship.find(params[:id])
+    @preference_relationship = current_user.preference_relationships.find(params[:workbook_id])
   end
 
   # Only allow a list of trusted parameters through.

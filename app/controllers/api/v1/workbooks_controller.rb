@@ -62,4 +62,8 @@ class Api::V1::WorkbooksController < ApplicationController
     blob = ActiveStorage::Blob.find(image_file[:id]) # Blobを作成
     "data:#{blob[:content_type]};base64,#{image}" # Vue側でそのまま画像として読み込み出来るBase64文字列にして返す
   end
+
+  def admin_user
+    render status: :unauthorized unless current_user.is_admin
+  end
 end
