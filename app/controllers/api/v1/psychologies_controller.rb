@@ -1,4 +1,4 @@
-class PsychologiesController < ApplicationController
+class Api::V1::PsychologiesController < ApplicationController
   before_action :set_psychology, only: [:show, :update, :destroy]
 
   # GET /psychologies
@@ -38,6 +38,10 @@ class PsychologiesController < ApplicationController
   # DELETE /psychologies/1.json
   def destroy
     @psychology.destroy
+  end
+
+  def basic_psychologies
+    @basic_psychologies
   end
 
   private

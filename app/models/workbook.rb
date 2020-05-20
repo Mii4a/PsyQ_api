@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Workbook < ApplicationRecord
+  belongs_to :psychology
   has_many :preference_relationships, dependent: :destroy
   has_many :users_added_to_preference, through: :preference_relationships,
                                        source: :user

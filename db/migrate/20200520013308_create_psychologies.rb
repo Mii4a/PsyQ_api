@@ -6,5 +6,7 @@ class CreatePsychologies < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+    add_index :psychologies, :category
+    add_index :psychologies, :explanation
   end
 end

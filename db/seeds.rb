@@ -25,6 +25,42 @@ User.create!(
   )
 end
 
+psychologies = [
+  {
+    category: 'basic',
+    field: '学習',
+    explanation: '経験を通じて行動を変容させる過程を研究する領域'
+  },
+  {
+    category: 'basic',
+    field: '生理',
+    explanation: '生理機能をもとに心理的機能との対応関係を研究する領域'
+  },
+  {
+    category: 'basic',
+    field: '社会',
+    explanation: '個人に対する社会活動や相互的影響関係を研究する領域'
+  },
+  {
+    category: 'applied',
+    field: '臨床',
+    explanation: '精神障害や心身症、心理的な問題や不適応行動などの援助、回復、予防、その研究を目的とする領域'
+  },
+  {
+    category: 'applied',
+    field: '教育',
+    explanation: '成長過程を心理学的視点から見つめ、効果的な教育方法を研究する領域'
+  }
+]
+psychologies.each do |n|
+  Psychology.create!(
+    category: n.category,
+    field: n.field,
+    explanation: n.explanation
+  )
+end
+
+
 (1..3).each do |n|
   Workbook.create!(
     subject_name: "test workbook #{n}",

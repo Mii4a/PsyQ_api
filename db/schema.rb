@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_09_061323) do
+ActiveRecord::Schema.define(version: 2020_05_20_075653) do
 
   create_table "answers", force: :cascade do |t|
     t.text "option"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 2020_05_09_061323) do
     t.index ["user_id", "workbook_id"], name: "index_preference_relationships_on_user_id_and_workbook_id", unique: true
     t.index ["user_id"], name: "index_preference_relationships_on_user_id"
     t.index ["workbook_id"], name: "index_preference_relationships_on_workbook_id"
+  end
+
+  create_table "psychologies", force: :cascade do |t|
+    t.string "category"
+    t.text "explanation"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "field"
+    t.index ["category"], name: "index_psychologies_on_category"
+    t.index ["explanation"], name: "index_psychologies_on_explanation"
   end
 
   create_table "questions", force: :cascade do |t|
