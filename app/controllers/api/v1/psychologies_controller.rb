@@ -5,6 +5,7 @@ class Api::V1::PsychologiesController < ApplicationController
   # GET /psychologies.json
   def index
     @psychologies = Psychology.all
+    render json: @psychologies, status: :ok
   end
 
   # GET /psychologies/1
@@ -41,7 +42,13 @@ class Api::V1::PsychologiesController < ApplicationController
   end
 
   def basic_psychologies
-    @basic_psychologies
+    @basic_psychologies = Psychology.where(category: 'basic')
+    render json: @basic_psychologies, status: :ok
+  end
+
+  def applied_psychologies
+    @applied_psychologies = Psychology.where(category: 'applied')
+    render json: @applied_psychologies, status: :ok
   end
 
   private

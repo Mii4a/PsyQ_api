@@ -1,2 +1,2 @@
-json.extract! psychology, :id, :category, :explanation, :created_at, :updated_at
+json.extract! psychology, :category, :explanation
 json.url psychology_url(psychology, format: :json)

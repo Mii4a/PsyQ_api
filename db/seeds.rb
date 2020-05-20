@@ -54,15 +54,15 @@ psychologies = [
 ]
 psychologies.each do |n|
   Psychology.create!(
-    category: n.category,
-    field: n.field,
-    explanation: n.explanation
+    category: n[:category],
+    field: n[:field],
+    explanation: n[:explanation]
   )
 end
 
-
+basic_psychology = Psychology.find_by(category: 'basic')
 (1..3).each do |n|
-  Workbook.create!(
+  basic_psychology.workbooks.create!(
     subject_name: "test workbook #{n}",
     subject_explanation: "this is test workbook #{n}"
   )
