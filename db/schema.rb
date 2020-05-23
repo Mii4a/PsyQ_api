@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_20_091642) do
+ActiveRecord::Schema.define(version: 2020_05_20_143759) do
 
   create_table "answers", force: :cascade do |t|
     t.text "option"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 2020_05_20_091642) do
     t.text "explanation"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "font_awesome_icon"
+    t.string "japanese_field_name"
     t.string "field"
     t.index ["category"], name: "index_psychologies_on_category"
     t.index ["explanation"], name: "index_psychologies_on_explanation"

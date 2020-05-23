@@ -11,6 +11,10 @@ class Api::V1::PsychologiesController < ApplicationController
   # GET /psychologies/1
   # GET /psychologies/1.json
   def show
+    @psychology = Psychology.find(params[:id])
+    @workbooks = @psychology.workbooks.all
+
+    render json: { workbooks: @workbooks, psychology: @psychology}
   end
 
   # POST /psychologies
@@ -59,6 +63,6 @@ class Api::V1::PsychologiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def psychology_params
-      params.require(:psychology).permit(:category, :explanation)
+      params.require(:psychology).permit(:category, :explanation, :field, :japanese_field_name)
     end
 end
