@@ -59,7 +59,7 @@ psychologies = [
     field: 'educational',
     japanese_field_name: '教育',
     explanation: '成長過程を心理学的視点から見つめ、効果的な教育方法を研究する領域',
-    font_awesome_icon: 'chalk-board-teacher'
+    font_awesome_icon: 'chalkboard-teacher'
   }
 ]
 psychologies.each do |n|

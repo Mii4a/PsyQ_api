@@ -8,7 +8,6 @@ class Workbook < ApplicationRecord
   has_many :questions, dependent: :destroy
   validates :subject_name, presence: true, uniqueness: true
   validates :subject_explanation, presence: true
-  mount_base64_uploader :subject_image, SubjectImageUploader
 
 end
 

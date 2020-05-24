@@ -5,6 +5,7 @@ class Question < ApplicationRecord
   has_many :answers, dependent: :destroy
   validates :explanation, presence: true
   validates :workbook, presence: true
+  counter_culture :workbook
 end
 
 # == Schema Information

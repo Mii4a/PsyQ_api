@@ -14,7 +14,11 @@ class Api::V1::WorkbooksController < ApplicationController
   # GET /workbooks/1.json
   def show
     @workbook = Workbook.find(params[:id])
-    render json: @workbook
+    @questions = @workbook.questions.all
+    render json: {
+      workbook: @workbook,
+      questions: @questions
+    }
   end
 
   # POST /workbooks
