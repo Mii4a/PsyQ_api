@@ -29,6 +29,8 @@ gem 'counter_culture', '~> 2.0'
 # gem for environment variable
 gem 'dotenv-rails'
 
+
+
 # gem for JWT session
 gem 'foreman'
 gem 'jwt_sessions'
@@ -65,6 +67,8 @@ group :development, :test do
 end
 
 group :development do
+  # Write each model schema
+  gem 'annotate'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'web-console', '>= 3.3.0'

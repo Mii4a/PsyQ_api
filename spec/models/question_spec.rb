@@ -1,5 +1,19 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: questions
+#
+#  id          :integer          not null, primary key
+#  explanation :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  workbook_id :integer
+#
+# Indexes
+#
+#  index_questions_on_workbook_id  (workbook_id)
+#
 require 'rails_helper'
 
 RSpec.describe Question, type: :model do
