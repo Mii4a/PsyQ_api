@@ -23,6 +23,9 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# Record the size of table
+gem 'counter_culture', '~> 2.0'
+
 # gem for environment variable
 gem 'dotenv-rails'
 

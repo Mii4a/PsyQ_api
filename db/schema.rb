@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_20_143759) do
+ActiveRecord::Schema.define(version: 2020_05_24_013554) do
 
   create_table "answers", force: :cascade do |t|
     t.text "option"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2020_05_20_143759) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "subject_image"
     t.integer "psychology_id"
+    t.integer "questions_count", default: 0, null: false
   end
 
   add_foreign_key "answers", "questions"
