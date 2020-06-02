@@ -15,9 +15,11 @@ class Api::V1::WorkbooksController < ApplicationController
   def show
     @workbook = Workbook.find(params[:id])
     @questions = @workbook.questions.all
+    @answers = @questions.map {|question| question.answers}.flatten
     render json: {
       workbook: @workbook,
-      questions: @questions
+      questions: @questions,
+      answers: @answers
     }
   end
 
