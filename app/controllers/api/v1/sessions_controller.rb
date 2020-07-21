@@ -14,7 +14,7 @@ class Api::V1::SessionsController < ApplicationController
                           value: token[:access],
                           httponly: true,
                           secure: Rails.env.production?)
-      render json: { csrf: token[:csrf]}
+      render json: { csrf: token[:csrf]}, status: :ok
     else
       not_found
     end

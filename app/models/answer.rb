@@ -3,6 +3,7 @@
 class Answer < ApplicationRecord
   belongs_to :question
   validates :option, presence: true
+  validates :is_answer, presence: true
   validates :question, presence: true
 end
 
